@@ -1,4 +1,4 @@
-import Logo from '../../assets/logo.png';
+import LogoDevPizza from '../../assets/logoDevPizza.png';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -10,9 +10,10 @@ import { Button } from '../../components/Button';
 import { apiDevPizza } from '../../services/api';
 
 // Validação dos dados de login com YUP
-export function Login() {
+export function Register() {
   const schema = yup
     .object({
+      name: yup.string().required('O seu nome é obrigatório ⚠️'),
       email: yup
         .string()
         .email('Insira um email válido ⚠️')
@@ -21,6 +22,10 @@ export function Login() {
         .string()
         .min(6, 'Sua senha deve conter ao menos 6 dígitos ⚠️')
         .required('A senha é obrigatória ⚠️'),
+      confirmPassword: yup
+        .string()
+        .required('A senha é obrigatória ⚠️')
+        .oneOf([yup.ref('password')], 'As senhas devem ser iguais'),
     })
     .required();
 
@@ -32,8 +37,10 @@ export function Login() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  //Passando os dados para o backend
   const onSubmit = async (loginData) => {
-    const response = await apiDevPizza.post('sessions', {
+    const response = await apiDevPizza.post('users', {
+      name: loginData.name,
       email: loginData.email,
       password: loginData.password,
     });
@@ -43,17 +50,24 @@ export function Login() {
 
   return (
     <C.Container>
-      <C.LeftContainer>
-        <img src={Logo} alt="black background" />
-      </C.LeftContainer>
-      <C.RightContainer>
-        <C.BlurContainer>
-          <C.Title>
-            Olá, seja bem vindo ao <span>Dev Pizza!</span>
-            <br />
-            Acesse com <span>Login e Senha.</span>
-          </C.Title>
+      <C.BlurContainer>
+        <C.LeftContainer></C.LeftContainer>
+        <C.RightContainer>
+          <img src={LogoDevPizza} alt="logo Dev Pizza text" />
+          <C.Title>Cadastre-se</C.Title>
           <C.Form onSubmit={handleSubmit(onSubmit)}>
+            <C.InputContainer>
+              <label>Nome</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Digite seu nome"
+                {...register('name')}
+              />
+              <p>{errors?.name?.message}</p>
+            </C.InputContainer>
+
             <C.InputContainer>
               <label>Email</label>
               <input
@@ -65,6 +79,7 @@ export function Login() {
               />
               <p>{errors?.email?.message}</p>
             </C.InputContainer>
+
             <C.InputContainer>
               <label>Senha</label>
               <input
@@ -76,13 +91,26 @@ export function Login() {
               />
               <p>{errors?.password?.message}</p>
             </C.InputContainer>
-            <Button type="submit">Entrar</Button>
+
+            <C.InputContainer>
+              <label>Confirmar Senha</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="* * * * * *"
+                {...register('confirmPassword')}
+              />
+              <p>{errors?.confirmPassword?.message}</p>
+            </C.InputContainer>
+
+            <Button type="submit">Cadastrar</Button>
           </C.Form>
           <p>
-            Não possui conta? <a>Clique aqui.</a>
+            Possui conta? <a>Sign in.</a>
           </p>
-        </C.BlurContainer>
-      </C.RightContainer>
+        </C.RightContainer>
+      </C.BlurContainer>
     </C.Container>
   );
 }

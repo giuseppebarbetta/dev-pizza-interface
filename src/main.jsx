@@ -1,12 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { Login } from "./containers/Login";
-import GlobalStyle from "./styles/GlobalStyle.js";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Login } from './containers/Login';
+import { Register } from './containers/Register/index.jsx';
+import GlobalStyle from './styles/GlobalStyle.js';
 
-
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Login />
+    {/* <Login /> */}
+    <Register />
     <GlobalStyle />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
