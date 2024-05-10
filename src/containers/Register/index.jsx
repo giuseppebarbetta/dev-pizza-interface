@@ -1,4 +1,6 @@
 import LogoDevPizza from '../../assets/logoDevPizza.png';
+//animação da validação ou erro nos acessos
+import { toast } from 'react-toastify';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -39,13 +41,27 @@ export function Register() {
   });
   //Passando os dados para o backend
   const onSubmit = async (loginData) => {
-    const response = await apiDevPizza.post('users', {
-      name: loginData.name,
-      email: loginData.email,
-      password: loginData.password,
-    });
+    try {
+      const { status } = await apiDevPizza.post(
+        'users',
+        {
+          name: loginData.name,
+          email: loginData.email,
+          password: loginData.password,
+        },
+        { validateStatus: () => true },
+      );
 
-    console.log(response);
+      if (status === 200 || status === 201) {
+        toast.success('Cadastrado com sucesso');
+      } else if (status === 409) {
+        toast.warning('Email já cadastrado, faça login');
+      } else {
+        throw new Error();
+      }
+    } catch (err) {
+      toast.error('Falha no sistema, tente novamente');
+    }
   };
 
   return (

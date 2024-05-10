@@ -29,7 +29,7 @@ export const BlurContainer = styled.div`
 `;
 
 export const LeftContainer = styled.div`
-  width: 40%;
+  width: 45%;
   height: 90%;
 
   background: url('${BackgroundRegister}');
@@ -49,7 +49,7 @@ export const LeftContainer = styled.div`
 `;
 
 export const RightContainer = styled.div`
-  width: 40%;
+  width: 45%;
   height: 90%;
 
   display: flex;
@@ -102,7 +102,7 @@ export const Form = styled.form`
   align-items: center;
   gap: 10px;
 
-  width: 100%;
+  width: 95%;
   max-width: 400px;
 `;
 

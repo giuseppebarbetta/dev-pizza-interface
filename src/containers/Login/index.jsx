@@ -1,4 +1,6 @@
 import Logo from '../../assets/logo.png';
+//animação da validação ou erro nos acessos
+import { toast } from 'react-toastify';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -33,10 +35,17 @@ export function Login() {
     resolver: yupResolver(schema),
   });
   const onSubmit = async (loginData) => {
-    const response = await apiDevPizza.post('sessions', {
-      email: loginData.email,
-      password: loginData.password,
-    });
+    const response = await toast.promise(
+      apiDevPizza.post('sessions', {
+        email: loginData.email,
+        password: loginData.password,
+      }),
+      {
+        pending: 'Verificando seus dados',
+        success: 'Bem vindo de volta 👌',
+        error: 'Verifique seu email e senha..',
+      },
+    );
 
     console.log(response);
   };
