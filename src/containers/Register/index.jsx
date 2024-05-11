@@ -1,15 +1,14 @@
 import LogoDevPizza from '../../assets/logoDevPizza.png';
 //animação da validação ou erro nos acessos
 import { toast } from 'react-toastify';
-
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-
-import * as C from './styles';
-
 import { Button } from '../../components/Button';
 import { apiDevPizza } from '../../services/api';
+import * as C from './styles';
+import * as yup from 'yup';
+
+import { Link } from 'react-router-dom';
 
 // Validação dos dados de login com YUP
 export function Register() {
@@ -112,8 +111,8 @@ export function Register() {
               <label>Confirmar Senha</label>
               <input
                 type="password"
-                name="password"
-                id="password"
+                name="confirmPassword"
+                id="confirmPassword"
                 placeholder="* * * * * *"
                 {...register('confirmPassword')}
               />
@@ -123,7 +122,7 @@ export function Register() {
             <Button type="submit">Cadastrar</Button>
           </C.Form>
           <p>
-            Possui conta? <a>Sign in.</a>
+            Possui conta? <Link to="/login">Sign in.</Link>
           </p>
         </C.RightContainer>
       </C.BlurContainer>

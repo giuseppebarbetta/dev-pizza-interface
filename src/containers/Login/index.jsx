@@ -5,14 +5,18 @@ import { toast } from 'react-toastify';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-
 import * as C from './styles';
+
+import { useUser } from '../../hooks/UserContext';
+import { Link } from 'react-router-dom';
 
 import { Button } from '../../components/Button';
 import { apiDevPizza } from '../../services/api';
 
 // Validação dos dados de login com YUP
 export function Login() {
+  const { putUserData } = useUser();
+
   const schema = yup
     .object({
       email: yup
@@ -34,8 +38,9 @@ export function Login() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
   const onSubmit = async (loginData) => {
-    const response = await toast.promise(
+    const { data } = await toast.promise(
       apiDevPizza.post('sessions', {
         email: loginData.email,
         password: loginData.password,
@@ -45,9 +50,10 @@ export function Login() {
         success: 'Bem vindo de volta 👌',
         error: 'Verifique seu email e senha..',
       },
+      { validateStatus: () => true },
     );
 
-    console.log(response);
+    putUserData(data);
   };
 
   return (
@@ -88,7 +94,7 @@ export function Login() {
             <Button type="submit">Entrar</Button>
           </C.Form>
           <p>
-            Não possui conta? <a>Clique aqui.</a>
+            Não possui conta? <Link to="/cadastro">Clique aqui.</Link>
           </p>
         </C.BlurContainer>
       </C.RightContainer>

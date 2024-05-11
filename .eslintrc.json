@@ -9,7 +9,8 @@
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "eslint-config-prettier"
   ],
   "ignorePatterns": [
     "dist"
@@ -24,33 +25,22 @@
     }
   },
   "plugins": [
+    "eslint-plugin-import-helpers",
     "react-refresh",
-    "prettier",
-    "eslint-plugin-import-helpers"
+    "prettier"
   ],
   "rules": {
     "import-helpers/order-imports": [
-      "warm",
+      "warn",
       {
         "newlinesBetween": "always",
         "groups": [
-          [
-            "/^react/",
-            "/^redux/"
-          ], // primeiro grupo: tudo que inicia com "react" e "redux"
-          "/styled-components/", // segundo grupo: tudo o que for importado diretamente da biblioteca styled-components. Isso é para garantir que a primeira importação nos arquivos styles.js seja sempre a do styled-components.
-          "module", // terceiro grupo: tudo que é um módulo (qualquer biblioteca listada no arquivo package.json)
-          "/prop-types/", // quarto grupo: a importação do prop-types
-          "/^~/pages/", // quinto grupo: todas as minhas páginas
-          "/^~/components/", // sexto grupo: todas os meus componentes
+          "module",
           [
             "parent",
             "sibling",
             "index"
-          ], // sétimo grupo: qualquer arquivo pai, irmão ou filho do arquivo atual
-          "/routes/", // oitavo grupo: as minhas rotas
-          "/^~/", // nono grupo: todos os outros arquivos importados pelo alias configurado
-          "/styles/"
+          ]
         ],
         "alphabetize": {
           "order": "asc",

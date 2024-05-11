@@ -74,6 +74,7 @@ export const RightContainer = styled.div`
     font-weight: 800;
 
     a {
+      color: #ffffff;
       text-decoration: underline;
       cursor: pointer;
       transition: 0.3s ease;
