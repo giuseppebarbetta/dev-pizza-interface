@@ -8,13 +8,14 @@ import * as yup from 'yup';
 import * as C from './styles';
 
 import { useUser } from '../../hooks/UserContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Button } from '../../components/Button';
 import { apiDevPizza } from '../../services/api';
 
 // Validação dos dados de login com YUP
 export function Login() {
+  const navigate = useNavigate();
   const { putUserData } = useUser();
 
   const schema = yup
@@ -54,6 +55,9 @@ export function Login() {
     );
 
     putUserData(data);
+    setTimeout(() => {
+      navigate('/');
+    }, 1000);
   };
 
   return (
