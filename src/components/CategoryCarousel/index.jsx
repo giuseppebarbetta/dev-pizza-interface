@@ -15,16 +15,29 @@ function CategoryCarousel() {
     loadCategories();
   }, []);
 
+  const breakPoints = [
+    { width: 1, itemsToShow: 1 },
+    { width: 500, itemsToShow: 2, pagination: false },
+    { width: 850, itemsToShow: 3 },
+    { width: 1150, itemsToShow: 4 },
+    { width: 1450, itemsToShow: 5 },
+    { width: 1750, itemsToShow: 6 },
+  ];
+
   return (
     <C.Container>
       <C.Title>CATEGORIAS</C.Title>
-      <Carousel itemsToShow={4}>
+      <Carousel
+        itemsToShow={5}
+        style={{ width: '90%' }}
+        breakPoints={breakPoints}
+      >
         {categories &&
           categories.map((category) => (
-            <div key={category.id}>
-              <img src={category.url} alt="foto da categoria" />
-              <button>{category.name}</button>
-            </div>
+            <C.ContainerItems key={category.id}>
+              <C.Image src={category.url} alt="foto da categoria" />
+              <C.Button>{category.name}</C.Button>
+            </C.ContainerItems>
           ))}
       </Carousel>
     </C.Container>

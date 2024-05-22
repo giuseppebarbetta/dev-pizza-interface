@@ -8,7 +8,7 @@ export const Container = styled.div`
   padding: 26px 0;
   gap: 26px;
 
-  background-color: #efefef;
+  background-color: #ffffff;
 
   .rec.rec-arrow {
     background-color: #c1fb72;
@@ -39,8 +39,16 @@ export const ContainerItems = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   gap: 8px;
+
+  p {
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 120%;
+
+    color: #424242;
+    padding-left: 8px;
+  }
 `
 
 export const  Image = styled.img`
@@ -48,6 +56,7 @@ export const  Image = styled.img`
   height: 210px;
 
   border-radius: 8px;
+  margin-bottom: 10px;
 `
 
 export const  Button = styled.button`
