@@ -3,7 +3,7 @@ import Carousel from 'react-elastic-carousel';
 import { apiDevPizza as api } from '../../services/api';
 import * as C from './style';
 
-function CategoryCarousel() {
+export function CategoryCarousel() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -43,5 +43,3 @@ function CategoryCarousel() {
     </C.Container>
   );
 }
-
-export default CategoryCarousel;

@@ -4,7 +4,7 @@ import { apiDevPizza as api } from '../../services/api';
 import formatCurrency from '../../utils/formatCurrency';
 import * as C from './style';
 
-function OffersCarousel() {
+export function OffersCarousel() {
   const [offers, setOffers] = useState([]);
 
   useEffect(() => {
@@ -51,5 +51,3 @@ function OffersCarousel() {
     </C.Container>
   );
 }
-
-export default OffersCarousel;

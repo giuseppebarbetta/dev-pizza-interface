@@ -2,8 +2,7 @@ import React from 'react';
 
 import * as C from './styles';
 import cover from '../../assets/cover.png';
-import CategoryCarousel from '../../components/CategoryCarousel';
-import OffersCarousel from '../../components/OffersCarousel';
+import { CategoryCarousel, OffersCarousel } from '../../components';
 
 function Home() {
   return (

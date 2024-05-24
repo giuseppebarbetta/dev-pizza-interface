@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   background-color: #000000;
-  min-height: 80vh;
+  min-height: 100vh;
 `
 
 export const ProductsImg = styled.img`

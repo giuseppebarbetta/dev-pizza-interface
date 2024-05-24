@@ -5,14 +5,14 @@ import { ToastContainer } from 'react-toastify';
 import AppRoutes from './routes/routes.jsx';
 
 import GlobalStyle from './styles/GlobalStyle.js';
-import { UserProvider } from './hooks/UserContext.jsx';
+import AppProvider from './hooks';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <UserProvider>
+  <>
+    <AppProvider>
       <AppRoutes />
-    </UserProvider>
+    </AppProvider>
     <ToastContainer autoClose={2000} theme="dark" />
     <GlobalStyle />
-  </React.StrictMode>,
+  </>,
 );
