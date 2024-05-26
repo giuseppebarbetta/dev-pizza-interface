@@ -1,23 +1,21 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-import { Login } from '../containers/Login';
-import { Register } from '../containers/Register';
-import Home from '../containers/Home';
+import { Login, Register, Products, Cart, Home } from '../containers';
 import PrivateRoute from './private-routes';
-import Products from '../containers/Products';
 
 function AppRoutes() {
   return (
     <Router>
       <Routes>
+        <Route element={<Login />} path="login" />
+        <Route element={<Register />} path="cadastro" />
         <Route element={<PrivateRoute element={<Home />} />} path="/" />
         <Route
           element={<PrivateRoute element={<Products />} />}
           path="/produtos"
         />
-        <Route element={<Login />} path="login" />
-        <Route element={<Register />} path="cadastro" />
+        <Route element={<PrivateRoute element={<Cart />} />} path="/carrinho" />
       </Routes>
     </Router>
   );

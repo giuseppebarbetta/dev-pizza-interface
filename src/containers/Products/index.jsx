@@ -6,7 +6,7 @@ import cover from '../../assets/cover.png';
 import { apiDevPizza as api } from '../../services/api';
 import { CardProduct } from '../../components/CardProduct';
 
-function Products() {
+export function Products() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [filterdProducts, setFilterdProducts] = useState([]);
@@ -73,5 +73,3 @@ function Products() {
     </C.Container>
   );
 }
-
-export default Products;
