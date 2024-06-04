@@ -30,9 +30,11 @@ export const Line = styled.div`
 export const PageLink = styled.a`
   cursor: pointer;
   text-decoration: none;
-  color: #555555;
+  color: ${props => props.isActive ? '#c1fb72' :  '#555555'};
+  -webkit-text-stroke: ${props => props.isActive && '.8px #000000' };
   font-size: 16px;
   line-height: 19px;
+  font-weight: ${props => props.isActive && 'bold' };
 
   img {
     width: 22px;

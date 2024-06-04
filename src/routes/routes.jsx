@@ -10,12 +10,16 @@ function AppRoutes() {
       <Routes>
         <Route element={<Login />} path="login" />
         <Route element={<Register />} path="cadastro" />
-        <Route element={<PrivateRoute element={<Home />} />} path="/" />
-        <Route
-          element={<PrivateRoute element={<Products />} />}
-          path="/produtos"
-        />
-        <Route element={<PrivateRoute element={<Cart />} />} path="/carrinho" />
+        {/* <Route element={<PrivateRoute element={<Home />} />} path="/" /> */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/" element={<Home />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path="/produtos" element={<Products />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path="/carrinho" element={<Cart />} />
+        </Route>
       </Routes>
     </Router>
   );

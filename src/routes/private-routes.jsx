@@ -1,11 +1,21 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Header } from '../components/Header';
 
 function PrivateRoute({ element }) {
   const user = localStorage.getItem('devpizza:userData');
 
-  return user ? element : <Navigate to="/login" />;
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  );
 }
 
 export default PrivateRoute;

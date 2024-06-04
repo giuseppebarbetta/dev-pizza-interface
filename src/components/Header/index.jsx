@@ -1,18 +1,31 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Person from '../../assets/person.png';
 import Cart from '../../assets/cart.png';
 import * as C from './styles';
 
 export function Header() {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  console.log(pathname);
+
   return (
     <C.Container>
       <C.ContainerLeft>
-        <C.PageLink>Home</C.PageLink>
-        <C.PageLink>Ver Produtos</C.PageLink>
+        <C.PageLink onClick={() => navigate('/')} isActive={pathname === '/'}>
+          Home
+        </C.PageLink>
+        <C.PageLink
+          onClick={() => navigate('/produtos')}
+          isActive={pathname.includes('produtos')}
+        >
+          Ver Produtos
+        </C.PageLink>
       </C.ContainerLeft>
 
       <C.ContainerRight>
-        <C.PageLink>
+        <C.PageLink onClick={() => navigate('/carrinho')}>
           <img src={Cart} alt="cart icon" />
         </C.PageLink>
         <C.Line></C.Line>
