@@ -5,12 +5,15 @@ import formatCurrency from '../../utils/formatCurrency';
 import cover from '../../assets/cover.png';
 import { apiDevPizza as api } from '../../services/api';
 import { CardProduct } from '../../components/CardProduct';
+import { useLocation } from 'react-router-dom';
 
 export function Products() {
+  const location = useLocation();
+  const { categoryId = 0 } = location.state || {};
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [filterdProducts, setFilterdProducts] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(0);
+  const [activeCategory, setActiveCategory] = useState(categoryId);
 
   useEffect(() => {
     async function loadCategories() {

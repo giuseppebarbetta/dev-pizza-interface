@@ -2,9 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Carousel from 'react-elastic-carousel';
 import { apiDevPizza as api } from '../../services/api';
 import * as C from './style';
+import { useNavigate } from 'react-router-dom';
 
 export function CategoryCarousel() {
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
+
+  const toCategoryId = (category) => {
+    navigate('/produtos', { state: { categoryId: category.id } });
+  };
 
   useEffect(() => {
     async function loadCategories() {
@@ -36,7 +42,9 @@ export function CategoryCarousel() {
           categories.map((category) => (
             <C.ContainerItems key={category.id}>
               <C.Image src={category.url} alt="foto da categoria" />
-              <C.Button>{category.name}</C.Button>
+              <C.Button onClick={() => toCategoryId(category)}>
+                {category.name}
+              </C.Button>
             </C.ContainerItems>
           ))}
       </Carousel>

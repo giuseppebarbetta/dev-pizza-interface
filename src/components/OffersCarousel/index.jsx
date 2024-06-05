@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Carousel from 'react-elastic-carousel';
 import { apiDevPizza as api } from '../../services/api';
 import formatCurrency from '../../utils/formatCurrency';
+import { useCart } from '../../hooks/CartContext';
 import * as C from './style';
+import { useNavigate } from 'react-router-dom';
 
 export function OffersCarousel() {
   const [offers, setOffers] = useState([]);
+  const { putProductInCart } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadOffers() {
@@ -44,7 +48,14 @@ export function OffersCarousel() {
               <C.Image src={product.url} alt="foto da oferta" />
               <p>{product.name}</p>
               <p>{product.formatedPrice}</p>
-              <C.Button>Peça agora</C.Button>
+              <C.Button
+                onClick={() => {
+                  putProductInCart(product);
+                  navigate('/carrinho');
+                }}
+              >
+                Peça agora
+              </C.Button>
             </C.ContainerItems>
           ))}
       </Carousel>

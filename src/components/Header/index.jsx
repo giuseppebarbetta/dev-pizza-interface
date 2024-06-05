@@ -8,7 +8,7 @@ import * as C from './styles';
 export function Header() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { logout } = useUser();
+  const { logout, userData } = useUser();
 
   const logoutUser = () => {
     logout();
@@ -38,7 +38,7 @@ export function Header() {
           <img src={Person} alt="person icon" />
         </C.PageLink>
         <C.ContainerText>
-          <p>Olá, NomeDoCliente</p>
+          <p>Olá, {userData.name}</p>
           <C.PageLink className="exit" onClick={logoutUser}>
             Sair
           </C.PageLink>
