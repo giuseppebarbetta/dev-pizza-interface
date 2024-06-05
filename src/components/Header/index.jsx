@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useUser } from '../../hooks/UserContext';
 import Person from '../../assets/person.png';
 import Cart from '../../assets/cart.png';
 import * as C from './styles';
@@ -7,8 +8,12 @@ import * as C from './styles';
 export function Header() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { logout } = useUser();
 
-  console.log(pathname);
+  const logoutUser = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
     <C.Container>
@@ -34,7 +39,9 @@ export function Header() {
         </C.PageLink>
         <C.ContainerText>
           <p>Olá, NomeDoCliente</p>
-          <C.PageLink className="exit">Sair</C.PageLink>
+          <C.PageLink className="exit" onClick={logoutUser}>
+            Sair
+          </C.PageLink>
         </C.ContainerText>
       </C.ContainerRight>
     </C.Container>
