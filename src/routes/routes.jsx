@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 import { Login, Register, Products, Cart, Home, Admin } from '../containers';
+import paths from '../constants/path';
 import PrivateRoute from './private-routes';
 
 function AppRoutes() {
@@ -22,7 +23,10 @@ function AppRoutes() {
         </Route>
 
         <Route element={<PrivateRoute isAdmin />}>
-          <Route path="/pedidos" element={<Admin />} />
+          <Route path={paths.Order} element={<Admin />} />
+        </Route>
+        <Route element={<PrivateRoute isAdmin />}>
+          <Route path={paths.Products} element={<Admin />} />
         </Route>
       </Routes>
     </Router>

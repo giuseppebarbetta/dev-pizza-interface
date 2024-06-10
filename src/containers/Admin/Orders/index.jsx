@@ -77,7 +77,7 @@ function Orders() {
             <C.LinkMenu
               key={status.id}
               onClick={() => handleStatus(status)}
-              isActiveStatus={activeStatus === status.id}
+              className={activeStatus === status.id ? 'active' : ''}
             >
               {status.label}
             </C.LinkMenu>

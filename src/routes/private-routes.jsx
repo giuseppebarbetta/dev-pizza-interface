@@ -17,7 +17,7 @@ function PrivateRoute({ isAdmin }) {
   return (
     <>
       {!isAdmin && <Header />}
-      <Outlet />
+      <Outlet context={{ isAdmin }} />
     </>
   );
 }
