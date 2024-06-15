@@ -9,6 +9,7 @@ import * as C from './styles';
 import * as yup from 'yup';
 
 import { Link } from 'react-router-dom';
+import { ErrorMessage } from '../../components';
 
 // Validação dos dados de login com YUP
 export function Register() {
@@ -80,7 +81,7 @@ export function Register() {
                 placeholder="Digite seu nome"
                 {...register('name')}
               />
-              <p>{errors?.name?.message}</p>
+              <ErrorMessage>{errors?.name?.message}</ErrorMessage>
             </C.InputContainer>
 
             <C.InputContainer>
@@ -92,7 +93,7 @@ export function Register() {
                 placeholder="Digite seu melhor email"
                 {...register('email')}
               />
-              <p>{errors?.email?.message}</p>
+              <ErrorMessage>{errors?.email?.message}</ErrorMessage>
             </C.InputContainer>
 
             <C.InputContainer>

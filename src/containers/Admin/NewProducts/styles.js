@@ -6,6 +6,7 @@ export const Container = styled.div`
   height: 100%;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -13,12 +14,15 @@ export const Container = styled.div`
     background-color: #565656;
     border-radius: 10px;
     padding: 30px;
+    margin-top: 35px;
   }
 `
 
 export const Label = styled.p`
   font-size: 14px;
   color: #ffffff;
+
+  margin-top: 7px;
 
 `
 
@@ -33,8 +37,8 @@ export const Input = styled.input`
   border-radius: 5px;
   outline: none;
 
-  margin-bottom: 26px;
   padding-left: 10px;
+  margin-bottom: 8px;
 
   ${({ type }) =>
     type === 'number' &&
@@ -63,7 +67,7 @@ export const LabelUpload = styled.label`
   border-radius: 5px;
 
   padding: 10px;
-  margin-bottom: 26px;
+  margin: 17px 0 7px;
 
   input {
     display: none;
@@ -72,9 +76,8 @@ export const LabelUpload = styled.label`
 
 export const ButtonStyle = styled(Button)`
   width: 100%;
-  height: 100%;
   font-size: 35px;
   padding: 3px 0;
 
-  margin-top: 35px;
+  margin-top: 20px;
 `

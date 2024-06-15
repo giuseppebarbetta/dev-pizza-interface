@@ -12,6 +12,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { Button } from '../../components/Button';
 import { apiDevPizza } from '../../services/api';
+import { ErrorMessage } from '../../components';
 
 // Validação dos dados de login com YUP
 export function Login() {
@@ -87,7 +88,7 @@ export function Login() {
                 placeholder="Digite seu melhor email"
                 {...register('email')}
               />
-              <p>{errors?.email?.message}</p>
+              <ErrorMessage>{errors?.email?.message}</ErrorMessage>
             </C.InputContainer>
             <C.InputContainer>
               <label>Senha</label>
@@ -98,7 +99,7 @@ export function Login() {
                 placeholder="* * * * * *"
                 {...register('password')}
               />
-              <p>{errors?.password?.message}</p>
+              <ErrorMessage>{errors?.password?.message}</ErrorMessage>
             </C.InputContainer>
             <Button type="submit">Entrar</Button>
           </C.Form>
