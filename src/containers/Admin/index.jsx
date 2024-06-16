@@ -7,6 +7,7 @@ import { SideMenuAdmin } from '../../components';
 import { useLocation, useOutletContext } from 'react-router-dom';
 import paths from '../../constants/path';
 import NewProduct from './NewProducts';
+import EditProduct from './EditProduct';
 
 export function Admin() {
   const { isAdmin } = useOutletContext;
@@ -20,6 +21,7 @@ export function Admin() {
         {currentLocation === paths.Order && <Orders />}
         {currentLocation === paths.Products && <ListProducts />}
         {currentLocation === paths.newProduct && <NewProduct />}
+        {currentLocation === paths.EditProduct && <EditProduct />}
       </C.ContainerItems>
     </C.Container>
   );

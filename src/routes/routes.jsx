@@ -31,6 +31,9 @@ function AppRoutes() {
         <Route element={<PrivateRoute isAdmin />}>
           <Route path={paths.newProduct} element={<Admin />} />
         </Route>
+        <Route element={<PrivateRoute isAdmin />}>
+          <Route path={paths.EditProduct} element={<Admin />} />
+        </Route>
       </Routes>
     </Router>
   );

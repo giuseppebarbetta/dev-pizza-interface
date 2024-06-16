@@ -13,9 +13,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useNavigate } from 'react-router-dom';
+import paths from '../../../constants/path';
 
 function ListProducts() {
   const [products, setProducts] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadProducts() {
@@ -32,6 +35,10 @@ function ListProducts() {
       return <CheckCircleIcon style={{ color: 'c1fb72' }} />;
     }
     return <CancelIcon style={{ color: 'cc1717' }} />;
+  }
+
+  function editProduct(product) {
+    navigate(paths.EditProduct, { state: { product } });
   }
 
   return (
@@ -67,7 +74,9 @@ function ListProducts() {
                   <TableCell>{formatCurrency(product.price)}</TableCell>
                   <TableCell align="center">{isOffer(product.offer)}</TableCell>
                   <TableCell>
-                    <C.Button>{<EditIcon />}</C.Button>
+                    <C.Button onClick={() => editProduct(product)}>
+                      {<EditIcon />}
+                    </C.Button>
                   </TableCell>
                 </TableRow>
               ))}
