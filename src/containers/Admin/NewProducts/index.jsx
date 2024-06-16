@@ -7,10 +7,13 @@ import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import * as C from './styles';
 import * as Yup from 'yup';
 import ReactSelect from 'react-select';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function NewProduct() {
   const [fileName, setFileName] = useState(null);
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
 
   const schema = Yup.object().shape({
     name: Yup.string().required('Digite o nome do produto'),
@@ -34,7 +37,24 @@ function NewProduct() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const productDataFormData = new FormData();
+
+    productDataFormData.append('name', data.name);
+    productDataFormData.append('price', data.price);
+    productDataFormData.append('category_id', data.category.id);
+    productDataFormData.append('file', data.file[0]);
+
+    await toast.promise(api.post('products', productDataFormData), {
+      pending: 'Criando um novo produto...',
+      success: 'Produto cadastrado com sucesso!',
+      error: 'Falha ao criar produto, tente novamente.',
+    });
+
+    setInterval(() => {
+      navigate('/listar-produtos');
+    }, 2000);
+  };
 
   useEffect(() => {
     async function loadCategories() {
@@ -88,7 +108,7 @@ function NewProduct() {
         </ErrorMessage>
 
         <Controller
-          name="category_id"
+          name="category"
           control={control}
           render={({ field }) => {
             return (
